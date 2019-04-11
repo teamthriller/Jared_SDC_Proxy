@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <title>FEC Demo</title>
+  </head>
+  <body>
+    <div id="Header"></div>
+    <div id="TopTracks"></div>
+    <div id="RelatedArtists"></div>
+    <script src="/lib/react.development.js"></script>
+    <script src="/lib/react-dom.development.js"></script>
+    <!-- <script href="http://localhost:3000/"></script> -->
+    <!-- <script href="http://localhost:3003/"></script> -->
+    <script src="http://localhost:3100/app.js"></script>
+    <!-- see: https://reactjs.org/docs/react-without-jsx.html -->
+    <script>
+      // ReactDOM.render(
+      //   React.createElement(Header),
+      //   document.getElementById('Header')
+      // );
+      // ReactDOM.render(
+      //   React.createElement(Top-Tracks),
+      //   document.getElementById('Top-Tracks')
+      // );
+      // ReactDOM.render(
+      //   React.createElement(Albums),
+      //   document.getElementById('Albums')
+      // );
+      ReactDOM.render(
+        React.createElement(RelatedArtists),
+        document.getElementById('RelatedArtists')
+      );
+    </script>
+  </body>
+</html>
