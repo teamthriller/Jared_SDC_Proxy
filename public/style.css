@@ -1,4 +1,8 @@
-#unifiedapp{
-    display: flex;
-    flex-direction: column;
+
+#Bodyalbum{
+    display: block;
+}
+#relatedartists{
+    margin-left: 200px;
+    display: block;
 }
