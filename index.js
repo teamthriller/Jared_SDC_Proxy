@@ -1,21 +1,60 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
+const httpproxy = require('http-proxy');
 
 const app = express();
 const port = 3111;
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/public')));
-app.listen(port, () => console.log(`App listening to port ${port}`));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/app.js', (req,res) => {
-    
 
+const proxy = httpproxy.createProxyServer({
+    target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
 });
-// launch all 4 services.
-// serve html.
-// get the apps through scripts. 
-// 
-//
-//
-//
+
+app.all("/data/toptracks", cors(), (req, res) => {
+  proxy.web(req, res, {
+    target: "http://ec2-18-191-178-115.us-east-2.compute.amazonaws.com/"
+  });
+});
+
+app.get('/data/albumswithartist/*', (req, res) => {
+    proxy.web(req, res, {
+      target: 'http://ec2-13-58-138-231.us-east-2.compute.amazonaws.com/'
+    });
+  });
+  app.get('/data/albumsbyartist/*', (req, res) => {
+    proxy.web(req, res, {
+      target: 'http://ec2-13-58-138-231.us-east-2.compute.amazonaws.com/'
+    });
+  });
+  app.get('/data/epswithartist/*', (req, res) => {
+    proxy.web(req, res, {
+      target: 'http://ec2-13-58-138-231.us-east-2.compute.amazonaws.com/'
+    });
+  });
+  app.get('/data/compilationswithartist/*', (req, res) => {
+    proxy.web(req, res, {
+      target: 'http://ec2-13-58-138-231.us-east-2.compute.amazonaws.com/'
+    });
+  });
+
+app.all("/data/artist/", (req, res) => {
+  proxy.web(req, res, {
+    target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
+  });
+});
+
+app.all("/icon", (req, res) => {
+    proxy.web(req, res, {
+      target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
+    });
+  });
+app.all("/data/artist/*", (req, res) => {
+  proxy.web(req, res, {
+    target: "http://ec2-18-191-230-44.us-east-2.compute.amazonaws.com/"
+  });
+});
+
+app.listen(port, () => console.log(`App listening to port ${port}`));

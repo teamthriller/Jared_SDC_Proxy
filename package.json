@@ -5,7 +5,8 @@
   "scripts": {
     "server": "nodemon index.js",
     "test": "jest --coverage",
-    "lint": "eslint app.js"
+    "lint": "eslint app.js",
+    "deploy": "node index.js"
   },
   "author": "Dmitri Tarasov",
   "license": "ISC",
@@ -48,6 +49,7 @@
     "body-parser": "^1.17.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "http-proxy": "^1.17.0",
     "mongodb": "^3.2.2",
     "mongoose": "^4.9.6",
     "node-fetch": "^2.3.0",
