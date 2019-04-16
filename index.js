@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 const proxy = httpproxy.createProxyServer({
-    target: "http://ec2-52-91-196-238.compute-1.amazonaws.com/"
+    target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
 });
 
 app.all("/data/toptracks", cors(), (req, res) => {
@@ -42,14 +42,19 @@ app.get('/data/albumswithartist/*', (req, res) => {
 
 app.all("/data/artist/", (req, res) => {
   proxy.web(req, res, {
-    target: "http://ec2-52-91-196-238.compute-1.amazonaws.com/"
+    target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
   });
 });
 
 app.all("/icon", (req, res) => {
     proxy.web(req, res, {
-      target: "http://ec2-52-91-196-238.compute-1.amazonaws.com/"
+      target: "http://ec2-34-227-148-64.compute-1.amazonaws.com"
     });
   });
+app.all("/data/artist/*", (req, res) => {
+  proxy.web(req, res, {
+    target: "http://ec2-18-191-230-44.us-east-2.compute.amazonaws.com/"
+  });
+});
 
 app.listen(port, () => console.log(`App listening to port ${port}`));

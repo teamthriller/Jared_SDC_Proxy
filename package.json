@@ -5,7 +5,8 @@
   "scripts": {
     "server": "nodemon index.js",
     "test": "jest --coverage",
-    "lint": "eslint app.js"
+    "lint": "eslint app.js",
+    "deploy": "node index.js"
   },
   "author": "Dmitri Tarasov",
   "license": "ISC",
