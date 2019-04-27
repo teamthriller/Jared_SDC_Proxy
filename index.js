@@ -1,3 +1,4 @@
+require("newrelic");
 const cors = require("cors");
 const express = require("express");
 const path = require("path");
@@ -12,6 +13,12 @@ app.use(express.static(path.join(__dirname, "public")));
 const proxy = httpproxy.createProxyServer({});
 
 app.all("/artists/*", cors(), (req, res) => {
+  proxy.web(req, res, {
+    target: "http://localhost:3100"
+  });
+});
+
+app.all("/icon", cors(), (req, res) => {
   proxy.web(req, res, {
     target: "http://localhost:3100"
   });
